@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class HUD : MonoBehaviour {
-
+public class HUD : MonoBehaviour
+{
 	public GameObject pause;
 	public bool paused = false;
 
@@ -43,6 +44,7 @@ public class HUD : MonoBehaviour {
 		redCount = redgoalScript.redScore;
 		blueCount = bluegoalScript.blueScore;
 	}
+
 	void OnGUI() {
 
 		string RedScore = redCount.ToString ();
@@ -54,6 +56,8 @@ public class HUD : MonoBehaviour {
 			BlueScore = "0" + BlueScore;
 		}
 
+
+        /*
 		GUI.BeginGroup (new Rect (100, 50, 100, 100));
 		GUI.DrawTexture (new Rect (0, 0, 200, 100), redgraphic);
 		GUI.EndGroup ();
@@ -64,5 +68,6 @@ public class HUD : MonoBehaviour {
 
 		GUI.Label (new Rect (115, 50, 100, 50),RedScore, myScript);
 		GUI.Label (new Rect (815, 50, 100, 50),BlueScore, myScript);
+        */
 		}
 }

@@ -4,19 +4,33 @@ using System.Collections;
 public class Blue : MonoBehaviour
 {
 	private float posX;
+
 	private float posY;
-	public float speed;
+
+	private float speed;
+
 	private bool left = false;
+
 	public bool grounded = false;
+
 	public Transform groundedEnd;
-	public Animator playerAnim;
+
+	private Animator playerAnim;
+
 	public GameObject ball;
+
 	public bool ballCaught = false;
+
 	public GameObject stealBallLeft;
+
 	public GameObject stealBallRight;
+
 	private bool stolen = false;
+
 	private bool stolenLeft = false;
+
 	public GameObject Player;
+
 	private bool paused = false;
 	// Use this for initialization
 	void Start ()
@@ -71,7 +85,7 @@ public class Blue : MonoBehaviour
 
 			if (Input.GetKeyDown (KeyCode.W) && grounded)
             {
-			    GetComponent<Rigidbody2D>().AddForce (Vector2.up * 150f);
+			    GetComponent<Rigidbody2D>().AddForce (Vector2.up * 300f);
 			}
 
 			if (Input.GetKeyDown (KeyCode.X) && ballCaught)

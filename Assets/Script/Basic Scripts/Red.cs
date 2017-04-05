@@ -4,7 +4,7 @@ using System.Collections;
 public class Red : MonoBehaviour {
 	private float posX;
 	private float posY;
-	public float speed;
+	private float speed;
 	private bool left = true;
 	public bool grounded = false;
 	public Transform groundedEnd;
@@ -17,9 +17,11 @@ public class Red : MonoBehaviour {
 	private bool stolenLeft = false;
 	public GameObject Player;
 	private bool paused;
-	
+
+    public float jumpForce;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		speed = 0.05f;
 		playerAnim = GetComponent<Animator> ();
 	}
@@ -56,8 +58,8 @@ public class Red : MonoBehaviour {
 								transform.position = new Vector2 (posX, posY);
 								left = true;
 						}
-						if ((Input.GetKey (KeyCode.UpArrow)) && (grounded == true)) {
-								GetComponent<Rigidbody2D>().AddForce (Vector2.up * 150f);
+						if ((Input.GetKeyDown (KeyCode.UpArrow)) && (grounded == true)) {
+								GetComponent<Rigidbody2D>().AddForce (Vector2.up * jumpForce);
 						}
 						if ((Input.GetKeyDown (KeyCode.N)) && (ballCaught == true)) {
 								Shoot ();
