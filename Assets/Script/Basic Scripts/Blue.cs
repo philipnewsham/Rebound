@@ -32,6 +32,7 @@ public class Blue : MonoBehaviour
 	public GameObject Player;
 
 	private bool paused = false;
+    private bool canSteal = true;
 	// Use this for initialization
 	void Start ()
     {
@@ -93,7 +94,7 @@ public class Blue : MonoBehaviour
 			    Shoot ();
 			}
 
-			if (Input.GetKeyDown (KeyCode.C) && !ballCaught)
+			if (Input.GetKeyDown (KeyCode.C) && !ballCaught && canSteal)
             {
 				Tackle ();
 			}
@@ -170,7 +171,14 @@ public class Blue : MonoBehaviour
 			GameObject proj = Instantiate(stealBallLeft,new Vector3 ((transform.position.x - 0.5f),transform.position.y,transform.position.z), Quaternion.identity) as GameObject;
 			proj.GetComponent<Rigidbody2D>().AddForce(Vector3.left * 300);
 		}
+        canSteal = false;
+        Invoke("CanSteal", 2f);
 	}
+
+    void CanSteal()
+    {
+        canSteal = true;
+    }
 	void Stolen()
     {
 		if (!stolenLeft)
