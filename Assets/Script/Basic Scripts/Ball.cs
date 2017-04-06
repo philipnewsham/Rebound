@@ -13,20 +13,19 @@ public class Ball : MonoBehaviour {
 	void Update () {
 	
 	}
-	void OnTriggerEnter2D(Collider2D target){
-		if(target.gameObject.tag == "BlueGoal"){
-			transform.position = new Vector3 (0f,0f,0f);
-			GetComponent<Rigidbody2D>().AddForce(Vector3.left * 500);
-		}
-		if (target.gameObject.tag == "RedGoal") {
-			transform.position = new Vector3 (0f,0f,0f);
-			GetComponent<Rigidbody2D>().AddForce(Vector3.right * 500);
-				}
-		if (target.gameObject.tag == "Respawn") {
-			Instantiate(ball,new Vector3 (0f,0f,0f), Quaternion.identity);
-			Destroy (gameObject);
-		}
+	void OnTriggerEnter2D(Collider2D target)
+    {
+        if(target.gameObject.tag == "RedGoal" || target.gameObject.tag == "BlueGoal" || target.gameObject.tag == "Respawn")
+        {
+            Respawn();
+        }
 	}
+
+    void Respawn()
+    {
+        transform.position = new Vector2(0f, 0f);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+    }
 	
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Player")
