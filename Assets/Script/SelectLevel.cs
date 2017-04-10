@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class SelectLevel : MonoBehaviour {
-
+using UnityEngine.SceneManagement;
+public class SelectLevel : MonoBehaviour
+{
+    public void LoadScene(int sceneNo)
+    {
+        SceneManager.LoadScene(sceneNo);
+    }
+    /*
 	public int level;
 	
 	private float posX;
@@ -69,4 +74,6 @@ public class SelectLevel : MonoBehaviour {
 		if (target.gameObject.tag == "level3") 
 			level3 = false;
 	}
+    */
+
 }
