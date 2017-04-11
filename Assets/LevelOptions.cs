@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelOptions : MonoBehaviour
 {
     public int goalAmount;
-    public bool goalsRotate;
+    public bool goalRotate;
 	// Use this for initialization
 	void Start ()
     {
