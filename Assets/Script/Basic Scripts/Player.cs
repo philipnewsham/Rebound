@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private bool left = false;
     public bool grounded = false;
     public Transform groundedEnd;
-    public Animator playerAnim;
+    public Sprite[] playerSprites;
     public GameObject ball;
     public bool ballCaught = false;
     public GameObject stealBallLeft;
@@ -18,12 +18,26 @@ public class Player : MonoBehaviour
     private bool stolenLeft = false;
     //public GameObject Player;
     private bool paused = false;
-    // Use this for initialization
+
+    public bool isPlayerOne;
+    private int m_playerNo;
+    private KeyCode[] m_movingLeft = new KeyCode[2] { KeyCode.A, KeyCode.LeftArrow };
+    private KeyCode[] m_movingRight = new KeyCode[2] { KeyCode.D, KeyCode.RightArrow };
+    private KeyCode[] m_jumping = new KeyCode[2] { KeyCode.W, KeyCode.UpArrow };
+    private KeyCode[] m_shooting = new KeyCode[2] { KeyCode.X, KeyCode.N };
+    private KeyCode[] m_stealing = new KeyCode[2] { KeyCode.C, KeyCode.M };
+
+    private Vector2 m_startingPosition;
+    
     void Start()
     {
-        playerAnim = GetComponent<Animator>();
+        if (isPlayerOne)
+            m_playerNo = 0;
+        else
+            m_playerNo = 1;
+
+        m_startingPosition = new Vector2(transform.position.x, transform.position.y);
     }
-    
     void Update()
     {
         if (ballCaught && stolen)
@@ -38,7 +52,7 @@ public class Player : MonoBehaviour
 
         if (!paused)
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(m_movingRight[m_playerNo]))
             {
                 posX = transform.position.x + speed;
                 posY = transform.position.y;
@@ -46,7 +60,7 @@ public class Player : MonoBehaviour
                 left = false;
                 transform.localScale = new Vector2(1, 1);
             }
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(m_movingLeft[m_playerNo]))
             {
                 posX = transform.position.x - speed;
                 posY = transform.position.y;
@@ -55,17 +69,17 @@ public class Player : MonoBehaviour
                 transform.localScale = new Vector2(-1, 1);
             }
 
-            if (Input.GetKeyDown(KeyCode.W) && grounded)
+            if (Input.GetKeyDown(m_jumping[m_playerNo]) && grounded)
             {
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 150f);
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300f);
             }
 
-            if (Input.GetKeyDown(KeyCode.X) && ballCaught)
+            if (Input.GetKeyDown(m_shooting[m_playerNo]) && ballCaught)
             {
                 Shoot();
             }
 
-            if (Input.GetKeyDown(KeyCode.C) && !ballCaught)
+            if (Input.GetKeyDown(m_stealing[m_playerNo]) && !ballCaught)
             {
                 Tackle();
             }
@@ -81,11 +95,13 @@ public class Player : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(9, 10);
     }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Ball")
         {
-            playerAnim.SetBool("BlueBall", true);
+            //playerAnim.SetBool("BlueBall", true);
+            GetComponent<SpriteRenderer>().sprite = playerSprites[1];
             ballCaught = true;
             speed = 0.03f;
         }
@@ -105,15 +121,15 @@ public class Player : MonoBehaviour
         }
         if (target.gameObject.tag == "Respawn")
         {
-            //Instantiate(Player, new Vector3(-1.25f, -1.5f, 0f), Quaternion.identity);
-            transform.position = new Vector2(-1.24f, -1.5f);
+            transform.position = m_startingPosition;
             if (ballCaught)
             {
                 Instantiate(ball, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 ballCaught = false;
                 speed = 0.05f;
+                GetComponent<SpriteRenderer>().sprite = playerSprites[0];
             }
-            Destroy(gameObject);
+            
         }
     }
     float m_posXProj;
@@ -132,12 +148,13 @@ public class Player : MonoBehaviour
         }
 
         GameObject proj = Instantiate(ball, new Vector3((transform.position.x - 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-        proj.GetComponent<Rigidbody2D>().AddForce(Vector3.left * 500);
+        proj.GetComponent<Rigidbody2D>().AddForce(m_dirProj * 500);
 
-        playerAnim.SetBool("BlueBall", false);
+        //playerAnim.SetBool("BlueBall", false);
+        GetComponent<SpriteRenderer>().sprite = playerSprites[0];
         ballCaught = false;
     }
-
+    bool canSteal;
     void Tackle()
     {
         if (!left)
@@ -150,7 +167,15 @@ public class Player : MonoBehaviour
             GameObject proj = Instantiate(stealBallLeft, new Vector3((transform.position.x - 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
             proj.GetComponent<Rigidbody2D>().AddForce(Vector3.left * 300);
         }
+            canSteal = false;
+            Invoke("CanSteal", 2f);
     }
+
+    void CanSteal()
+    {
+        canSteal = true;
+    }
+
     void Stolen()
     {
         if (!stolenLeft)
@@ -170,7 +195,8 @@ public class Player : MonoBehaviour
 
         stolen = false;
         stolenLeft = false;
-        playerAnim.SetBool("BlueBall", false);
+        //playerAnim.SetBool("BlueBall", false);
+        GetComponent<SpriteRenderer>().sprite = playerSprites[0];
         ballCaught = false;
     }
 }
