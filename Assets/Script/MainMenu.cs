@@ -85,23 +85,32 @@ public class MainMenu : MonoBehaviour
     private int m_goalRotInt;
     public void EnableGoalRotate()
     {
-        if(m_affectRotateToggle)
-        m_goalRotate = !m_goalRotate;
-        if (m_goalRotate)
-            m_goalRotInt = 1;
-        else
-            m_goalRotInt = 0;
-        SaveOptions();
+        print("it happened early");
+        if (m_affectRotateToggle)
+        {
+            m_goalRotate = !m_goalRotate;
+            if (m_goalRotate)
+                m_goalRotInt = 1;
+            else
+                m_goalRotInt = 0;
+            SaveGoalRotate();
+        }
     }
     public Toggle goalRotateToggle;
     bool m_affectRotateToggle = true;
+
     void LoadOptions()
+    {
+        LoadGoalAmount();
+        LoadGoalRotate();
+    }
+    void LoadGoalAmount()
     {
         if (PlayerPrefs.HasKey("Goals"))
         {
             m_goalAmount = PlayerPrefs.GetInt("Goals");
             ChangeGoalAmountText();
-            switch(m_goalAmount)
+            switch (m_goalAmount)
             {
                 case 1:
                     changeGoalAmountButtons[0].interactable = false;
@@ -113,30 +122,51 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            print("goals not saved");
             m_goalAmount = 5;
-            SaveOptions();
+            //SaveOptions();
         }
-        
-        if(PlayerPrefs.HasKey("GoalRotate"))
+    }
+    void LoadGoalRotate()
+    {
+        if (PlayerPrefs.HasKey("GoalRotate"))
         {
             m_goalRotInt = PlayerPrefs.GetInt("GoalRotate");
+            print(m_goalRotInt);
             m_affectRotateToggle = false;
             if (m_goalRotInt == 0)
+            {
                 goalRotateToggle.isOn = false;
+                m_goalRotate = false;
+            }
             else
+            {
                 goalRotateToggle.isOn = true;
+                m_goalRotate = true;
+            }
+            m_levelOptions.goalRotate = m_goalRotate;
             m_affectRotateToggle = true;
         }
         else
         {
-
+            print("hasn't loaded goals");
         }
     }
 
     void SaveOptions()
     {
+        //PlayerPrefs.Save();
+    }
+
+    void SaveGoalAmount()
+    {
         PlayerPrefs.SetInt("Goals", m_goalAmount);
+    }
+
+    void SaveGoalRotate()
+    {
         PlayerPrefs.SetInt("GoalRotate", m_goalRotInt);
+        print(m_goalRotInt);
         m_levelOptions.goalAmount = m_goalAmount;
 
         if (m_goalRotInt == 0)
@@ -150,7 +180,7 @@ public class MainMenu : MonoBehaviour
     void ChangeGoalAmountText()
     {
         goalAmountText.text = string.Format("First to {0} goals", m_goalAmount);
-        SaveOptions();
+        SaveGoalAmount();
 
     }
 }
