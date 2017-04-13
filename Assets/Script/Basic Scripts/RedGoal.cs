@@ -5,6 +5,7 @@ public class RedGoal : MonoBehaviour
 {
 	public int redScore;
     public Text score;
+    private Image m_scoreImage;
     private GameFinish m_gameFinish;
     private int m_goalAmount;
 
@@ -15,11 +16,14 @@ public class RedGoal : MonoBehaviour
     private float m_speed = 25f;
 
     private Transform[] parent;
-    // Use this for initialization
-    void Start () {
+    public Vector3 baseColour;
+    private SpriteRenderer m_spriteRenderer;
+    void Start ()
+    {
 		redScore = 0;
         m_gameFinish = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameFinish>();
         parent = GetComponentsInParent<Transform>();
+        m_scoreImage = score.GetComponentInParent<Image>();
         if (GameObject.FindGameObjectWithTag("Options"))
         {
             m_levelOptions = GameObject.FindGameObjectWithTag("Options").GetComponent<LevelOptions>();
@@ -35,10 +39,28 @@ public class RedGoal : MonoBehaviour
         {
             m_speed = m_speed * -1f;
         }
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+        GrabColour();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void GrabColour()
+    {
+        if (GameObject.FindGameObjectWithTag("Options"))
+        {
+            LevelOptions levelOptions = GameObject.FindGameObjectWithTag("Options").GetComponent<LevelOptions>();
+            m_spriteRenderer.color = new Color(levelOptions.playerTwoColour.x, levelOptions.playerTwoColour.y, levelOptions.playerTwoColour.z, .75f);
+            m_scoreImage.color = new Color(levelOptions.playerTwoColour.x, levelOptions.playerTwoColour.y, levelOptions.playerTwoColour.z, 1f);
+        }
+        else
+        {
+            m_spriteRenderer.color = new Color(baseColour.x, baseColour.y, baseColour.z, .75f);
+            m_scoreImage.color = new Color(baseColour.x, baseColour.y, baseColour.z, 1f);
+
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (m_goalRotate)
         {

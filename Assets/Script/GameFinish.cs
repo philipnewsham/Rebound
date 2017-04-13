@@ -38,12 +38,12 @@ public class GameFinish : MonoBehaviour
         if(isRed)
         {
             //m_winnerString = "<color=#ff0000ff>Red</color=\ff0000ff>";
-            m_winnerString = "Red";
+            m_winnerString = "Player Two";
         }
         else
         {
             //m_winnerString = "<color=#ff0000ff>Blue</color=\00ffffff>";
-            m_winnerString = "Blue";
+            m_winnerString = "Player One";
         }
         winningText.text = string.Format("{0} wins {1} - {2}!", m_winnerString, redGoal.redScore, blueGoal.blueScore);
     }

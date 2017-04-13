@@ -19,8 +19,10 @@ public class PlayerColour : MonoBehaviour
 
     public Image playerTwoImage;
 
+    private LevelOptions m_levelOptions;
     void Start()
     {
+        m_levelOptions = GameObject.FindGameObjectWithTag("Options").GetComponent<LevelOptions>();
         LoadColour();
     }
 
@@ -83,6 +85,8 @@ public class PlayerColour : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerTwoRedValue", m_playerTwoValues[0]);
         PlayerPrefs.SetFloat("PlayerTwoGreenValue", m_playerTwoValues[1]);
         PlayerPrefs.SetFloat("PlayerTwoBlueValue", m_playerTwoValues[2]);
+
+        SendToOptions();
     }
 
     void LoadColour()
@@ -118,6 +122,13 @@ public class PlayerColour : MonoBehaviour
         {
             PlayerTwoRevertToBase();
         }
+        SendToOptions();
+    }
+
+    void SendToOptions()
+    {
+        m_levelOptions.playerOneColour = new Vector3(m_playerOneValues[0], m_playerOneValues[1], m_playerOneValues[2]);
+        m_levelOptions.playerTwoColour = new Vector3(m_playerTwoValues[0], m_playerTwoValues[1], m_playerTwoValues[2]);
     }
     /*
 private float m_redVal1;

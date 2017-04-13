@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject options;
     private GameObject m_optionsClone;
     private LevelOptions m_levelOptions;
-    void Start()
+    void Awake()
     {
         if(!GameObject.FindGameObjectWithTag("Options"))
         {
@@ -153,21 +153,17 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    void SaveOptions()
-    {
-        //PlayerPrefs.Save();
-    }
-
     void SaveGoalAmount()
     {
         PlayerPrefs.SetInt("Goals", m_goalAmount);
+        m_levelOptions.goalAmount = m_goalAmount;
     }
 
     void SaveGoalRotate()
     {
         PlayerPrefs.SetInt("GoalRotate", m_goalRotInt);
         print(m_goalRotInt);
-        m_levelOptions.goalAmount = m_goalAmount;
+        
 
         if (m_goalRotInt == 0)
             m_goalRotate = false;
@@ -181,6 +177,5 @@ public class MainMenu : MonoBehaviour
     {
         goalAmountText.text = string.Format("First to {0} goals", m_goalAmount);
         SaveGoalAmount();
-
     }
 }

@@ -28,16 +28,43 @@ public class Player : MonoBehaviour
     private KeyCode[] m_stealing = new KeyCode[2] { KeyCode.C, KeyCode.M };
 
     private Vector2 m_startingPosition;
-    
+
+    private SpriteRenderer m_spriteRenderer;
+    public Vector3[] baseColours;
+    private SpriteRenderer m_ballSprite;
     void Start()
     {
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
         if (isPlayerOne)
             m_playerNo = 0;
         else
             m_playerNo = 1;
 
         m_startingPosition = new Vector2(transform.position.x, transform.position.y);
+
+        SpriteRenderer[] childObjects = GetComponentsInChildren<SpriteRenderer>();
+        m_ballSprite = childObjects[1];
+        m_ballSprite.enabled = false;
+        GrabColour();
     }
+
+    void GrabColour()
+    {
+        if (GameObject.FindGameObjectWithTag("Options"))
+        {
+            LevelOptions levelOptions = GameObject.FindGameObjectWithTag("Options").GetComponent<LevelOptions>();
+            if(isPlayerOne)
+                m_spriteRenderer.color = new Color(levelOptions.playerOneColour.x, levelOptions.playerOneColour.y, levelOptions.playerOneColour.z, 1);
+            else
+                m_spriteRenderer.color = new Color(levelOptions.playerTwoColour.x, levelOptions.playerTwoColour.y, levelOptions.playerTwoColour.z, 1);
+        }
+        else
+        {
+            m_spriteRenderer.color = new Color(baseColours[m_playerNo].x, baseColours[m_playerNo].y, baseColours[m_playerNo].z, 1);
+
+        }
+    }
+
     void Update()
     {
         if (ballCaught && stolen)
@@ -101,7 +128,8 @@ public class Player : MonoBehaviour
         if (coll.gameObject.tag == "Ball")
         {
             //playerAnim.SetBool("BlueBall", true);
-            GetComponent<SpriteRenderer>().sprite = playerSprites[1];
+            //GetComponent<SpriteRenderer>().sprite = playerSprites[1];
+            m_ballSprite.enabled = true;
             ballCaught = true;
             speed = 0.03f;
         }
@@ -127,7 +155,8 @@ public class Player : MonoBehaviour
                 Instantiate(ball, new Vector3(0f, 0f, 0f), Quaternion.identity);
                 ballCaught = false;
                 speed = 0.05f;
-                GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+                //GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+                m_ballSprite.enabled = false;
             }
             
         }
@@ -147,28 +176,33 @@ public class Player : MonoBehaviour
             m_dirProj = Vector2.left;
         }
 
-        GameObject proj = Instantiate(ball, new Vector3((transform.position.x - 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+        GameObject proj = Instantiate(ball, new Vector3((m_posXProj), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
         proj.GetComponent<Rigidbody2D>().AddForce(m_dirProj * 500);
 
         //playerAnim.SetBool("BlueBall", false);
-        GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+        //GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+        m_ballSprite.enabled = false;
         ballCaught = false;
+        speed = 0.05f;
     }
-    bool canSteal;
+    bool canSteal = true;
     void Tackle()
     {
-        if (!left)
+        if (canSteal)
         {
-            GameObject proj = Instantiate(stealBallRight, new Vector3((transform.position.x + 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-            proj.GetComponent<Rigidbody2D>().AddForce(Vector3.right * 300);
-        }
-        else
-        {
-            GameObject proj = Instantiate(stealBallLeft, new Vector3((transform.position.x - 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-            proj.GetComponent<Rigidbody2D>().AddForce(Vector3.left * 300);
-        }
+            if (!left)
+            {
+                GameObject proj = Instantiate(stealBallRight, new Vector3((transform.position.x + 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+                proj.GetComponent<Rigidbody2D>().AddForce(Vector3.right * 300);
+            }
+            else
+            {
+                GameObject proj = Instantiate(stealBallLeft, new Vector3((transform.position.x - 0.5f), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+                proj.GetComponent<Rigidbody2D>().AddForce(Vector3.left * 300);
+            }
             canSteal = false;
             Invoke("CanSteal", 2f);
+        }
     }
 
     void CanSteal()
@@ -196,7 +230,9 @@ public class Player : MonoBehaviour
         stolen = false;
         stolenLeft = false;
         //playerAnim.SetBool("BlueBall", false);
-        GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+        //GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+        m_ballSprite.enabled = false;
         ballCaught = false;
+        speed = 0.05f;
     }
 }
