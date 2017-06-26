@@ -8,13 +8,10 @@ public class Ball : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        m_startPosition = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameFinish>().startPosition;
+        //m_startPosition = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameFinish>().startPosition;
+        m_startPosition = transform.position;
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 	void OnTriggerEnter2D(Collider2D target)
     {
         if(target.gameObject.tag == "RedGoal" || target.gameObject.tag == "BlueGoal" || target.gameObject.tag == "Respawn")
@@ -23,14 +20,16 @@ public class Ball : MonoBehaviour {
         }
 	}
 
-    void Respawn()
+    public void Respawn()
     {
+        gameObject.SetActive(true);
         transform.position = m_startPosition;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 	
-	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "Player")
-						Destroy (gameObject);
+	void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Player") { }
+						//Destroy (gameObject);
 	}
 }

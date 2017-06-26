@@ -87,6 +87,7 @@ public class PlayerColour : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerTwoBlueValue", m_playerTwoValues[2]);
 
         SendToOptions();
+        ChangeBackgroundColours();
     }
 
     void LoadColour()
@@ -123,8 +124,16 @@ public class PlayerColour : MonoBehaviour
             PlayerTwoRevertToBase();
         }
         SendToOptions();
+        ChangeBackgroundColours();
     }
 
+    public Image[] backgroundColours;
+
+    void ChangeBackgroundColours()
+    {
+        backgroundColours[0].color = new Color(m_playerOneValues[0], m_playerOneValues[1], m_playerOneValues[2], 1);
+        backgroundColours[1].color = new Color(m_playerTwoValues[0], m_playerTwoValues[1], m_playerTwoValues[2], 1);
+    }
     void SendToOptions()
     {
         m_levelOptions.playerOneColour = new Vector3(m_playerOneValues[0], m_playerOneValues[1], m_playerOneValues[2]);

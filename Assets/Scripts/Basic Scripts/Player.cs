@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer m_spriteRenderer;
     public Vector3[] baseColours;
     private SpriteRenderer m_ballSprite;
+
+    private GameObject m_currentBall;
     void Start()
     {
         m_spriteRenderer = GetComponent<SpriteRenderer>();
@@ -127,6 +129,8 @@ public class Player : MonoBehaviour
     {
         if (coll.gameObject.tag == "Ball")
         {
+            m_currentBall = coll.gameObject;
+            m_currentBall.SetActive(false);
             //playerAnim.SetBool("BlueBall", true);
             //GetComponent<SpriteRenderer>().sprite = playerSprites[1];
             m_ballSprite.enabled = true;
@@ -152,7 +156,8 @@ public class Player : MonoBehaviour
             transform.position = m_startingPosition;
             if (ballCaught)
             {
-                Instantiate(ball, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                //Instantiate(ball, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                m_currentBall.GetComponent<Ball>().Respawn();
                 ballCaught = false;
                 speed = 0.05f;
                 //GetComponent<SpriteRenderer>().sprite = playerSprites[0];
@@ -168,6 +173,7 @@ public class Player : MonoBehaviour
         if (!left)
         {
             m_posXProj = transform.position.x + 0.5f;
+            //m_currentBall.transform.position = new Vector3(m_posXProj;
             m_dirProj = Vector2.right;
         }
         else
@@ -176,8 +182,12 @@ public class Player : MonoBehaviour
             m_dirProj = Vector2.left;
         }
 
-        GameObject proj = Instantiate(ball, new Vector3((m_posXProj), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-        proj.GetComponent<Rigidbody2D>().AddForce(m_dirProj * 500);
+        //GameObject proj = Instantiate(ball, new Vector3((m_posXProj), transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+        //proj.GetComponent<Rigidbody2D>().AddForce(m_dirProj * 500);
+        m_currentBall.transform.position = new Vector3((m_posXProj), transform.position.y, transform.position.z);
+
+        m_currentBall.SetActive(true);
+        m_currentBall.GetComponent<Rigidbody2D>().AddForce(m_dirProj * 500);
 
         //playerAnim.SetBool("BlueBall", false);
         //GetComponent<SpriteRenderer>().sprite = playerSprites[0];
