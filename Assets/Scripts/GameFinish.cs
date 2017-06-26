@@ -10,7 +10,13 @@ public class GameFinish : MonoBehaviour
     public Text winningText;
     public RedGoal redGoal;
     public BlueGoal blueGoal;
-
+    public Vector2 startPosition;
+    private GameObject ball;
+    void Start()
+    {
+        ball = GameObject.FindGameObjectWithTag("Ball");
+        startPosition = new Vector2(ball.transform.position.x, ball.transform.position.y);
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -28,7 +34,7 @@ public class GameFinish : MonoBehaviour
     {
         GameObject ball = GameObject.FindGameObjectWithTag("Ball");
         ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        ball.transform.position = new Vector2(0, 0);
+        ball.transform.position = startPosition;
     }
 
     public void GameOver(bool isRed)

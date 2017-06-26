@@ -2339,6 +2339,11 @@ Prefab:
       propertyPath: blueGoal
       value: 
       objectReference: {fileID: 1262117143}
+    - target: {fileID: 114776247471808470, guid: 4de00d059c565824c82081f1f826f9ac,
+        type: 2}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 2113303294}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4de00d059c565824c82081f1f826f9ac, type: 2}
   m_IsPrefabParent: 0
@@ -8969,6 +8974,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bcaa366949fb9b45a4bc8c4361a1f32, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2113303294 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 69cbec799f0186e4e9b9566c6cdb413d, type: 2}
+  m_PrefabInternal: {fileID: 1152313511}
 --- !u!4 &2114585909 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5bcaa366949fb9b45a4bc8c4361a1f32, type: 2}

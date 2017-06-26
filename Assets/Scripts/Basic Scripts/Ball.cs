@@ -3,11 +3,13 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 	public GameObject ball;
-
+    private Vector2 m_startPosition;
+    private GameFinish m_gameFinish;
 	// Use this for initialization
-	void Start () {
-	
-	}
+	void Start ()
+    {
+        m_startPosition = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameFinish>().startPosition;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,7 +25,7 @@ public class Ball : MonoBehaviour {
 
     void Respawn()
     {
-        transform.position = new Vector2(0f, 0f);
+        transform.position = m_startPosition;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 	

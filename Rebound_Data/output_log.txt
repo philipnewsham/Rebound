@@ -17,37 +17,139 @@ Platform assembly: C:\Users\Philip\Documents\GitHub\Rebound\Rebound_Data\Managed
 Loading C:\Users\Philip\Documents\GitHub\Rebound\Rebound_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Philip\Documents\GitHub\Rebound\Rebound_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading C:\Users\Philip\Documents\GitHub\Rebound\Rebound_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.463 seconds
+- Completed reload, in  0.034 seconds
 Platform assembly: C:\Users\Philip\Documents\GitHub\Rebound\Rebound_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Philip\Documents\GitHub\Rebound\Rebound_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 59Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.823306 ms
+UnloadTime: 2.852789 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.770347 ms
+UnloadTime: 12.664063 ms
+goals not saved
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 418.
-Total: 0.574742 ms (FindLiveObjects: 0.054868 ms CreateObjectMapping: 0.030395 ms MarkObjects: 0.474083 ms  DeleteObjects: 0.015000 ms)
+hasn't loaded goals
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 634.
+Total: 0.648953 ms (FindLiveObjects: 0.062763 ms CreateObjectMapping: 0.031184 ms MarkObjects: 0.541583 ms  DeleteObjects: 0.012236 ms)
+
+it happened early
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+it happened early
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+it happened early
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.533567 ms
+UnloadTime: 1.066983 ms
+NullReferenceException: Object reference not set to an instance of an object
+  at MainMenu.ChangeGoalAmountText () [0x00000] in <filename unknown>:0 
+  at MainMenu.LoadGoalAmount () [0x00000] in <filename unknown>:0 
+  at MainMenu.LoadOptions () [0x00000] in <filename unknown>:0 
+  at MainMenu.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 334.
-Total: 0.346582 ms (FindLiveObjects: 0.054079 ms CreateObjectMapping: 0.024868 ms MarkObjects: 0.262107 ms  DeleteObjects: 0.004736 ms)
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 363.
+Total: 0.466583 ms (FindLiveObjects: 0.061579 ms CreateObjectMapping: 0.026842 ms MarkObjects: 0.355661 ms  DeleteObjects: 0.021315 ms)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.443688 ms
+UnloadTime: 0.868429 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 628.
-Total: 0.395924 ms (FindLiveObjects: 0.075395 ms CreateObjectMapping: 0.023289 ms MarkObjects: 0.290923 ms  DeleteObjects: 0.005526 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 651.
+Total: 0.662769 ms (FindLiveObjects: 0.072632 ms CreateObjectMapping: 0.039868 ms MarkObjects: 0.525399 ms  DeleteObjects: 0.023684 ms)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.862508 ms
+UnloadTime: 0.977377 ms
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 65 unused Assets to reduce memory usage. Loaded Objects now: 445.
-Total: 0.620927 ms (FindLiveObjects: 0.072632 ms CreateObjectMapping: 0.030000 ms MarkObjects: 0.395530 ms  DeleteObjects: 0.121185 ms)
+it happened early
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 53 unused Assets to reduce memory usage. Loaded Objects now: 661.
+Total: 0.952114 ms (FindLiveObjects: 0.063158 ms CreateObjectMapping: 0.039868 ms MarkObjects: 0.739743 ms  DeleteObjects: 0.108158 ms)
+
+it happened early
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.202774 ms
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 678.
+Total: 0.791059 ms (FindLiveObjects: 0.110132 ms CreateObjectMapping: 0.070263 ms MarkObjects: 0.571189 ms  DeleteObjects: 0.038684 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.338959 ms
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 53 unused Assets to reduce memory usage. Loaded Objects now: 661.
+Total: 1.302643 ms (FindLiveObjects: 0.071448 ms CreateObjectMapping: 0.059211 ms MarkObjects: 1.019614 ms  DeleteObjects: 0.151975 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.823823 ms
+NullReferenceException: Object reference not set to an instance of an object
+  at MainMenu.ChangeGoalAmountText () [0x00000] in <filename unknown>:0 
+  at MainMenu.LoadGoalAmount () [0x00000] in <filename unknown>:0 
+  at MainMenu.LoadOptions () [0x00000] in <filename unknown>:0 
+  at MainMenu.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 390.
+Total: 0.552241 ms (FindLiveObjects: 0.041842 ms CreateObjectMapping: 0.026842 ms MarkObjects: 0.460267 ms  DeleteObjects: 0.022500 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.576321 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 701.
+Total: 0.740927 ms (FindLiveObjects: 0.080921 ms CreateObjectMapping: 0.056053 ms MarkObjects: 0.577110 ms  DeleteObjects: 0.025263 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.222511 ms
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 36 unused Assets to reduce memory usage. Loaded Objects now: 661.
+Total: 1.289222 ms (FindLiveObjects: 0.078553 ms CreateObjectMapping: 0.058026 ms MarkObjects: 1.016456 ms  DeleteObjects: 0.134606 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: b8c -> priority: 1 
+  Thread -> id: 1074 -> priority: 1 
